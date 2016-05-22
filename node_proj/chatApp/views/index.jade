@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  if(!user)
+      a(href="/login") Login
+      br
+      a(href="/register") Register
+   if(user)
+       p You are currently logged in as #{user.username}
+       br
+       p Connect to the Chat Application or Logout
+       br
+       a(href="/chat") Chat Home Page
+       br
+       br
+       a(href="/logout") Logout
+
+       h3 Upload your image
+       input(type="file" id="imageFile")
+       br
+       div(id="selectedImageContainer")
+         img( src="" id="imageSelected")
+       br

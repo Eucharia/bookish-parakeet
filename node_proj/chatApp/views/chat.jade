@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title Socket.IO
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='stylesheets/chat.css')
+
+block content
+    body
+        ul( class="pages")
+            li(class="chat page")
+                div( class="chatArea")
+                    ul(class="messages")
+                input(class="inputMessage" placeholder="Type here ....")
+
+            div( class="login page" id="square")
+                div(class="form")
+                    h3(class="tittle") What's your nick name?
+                    input(class="usernameInput" type="text" maxlength="12")
+
+    script(src="http://code.jquery.com/jquery.js")
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+    script(src="/socket.io/socket.io.js")
+    script(src="https://cdn.socket.io/socket.io-1.2.0.js")
+    script(src="http://code.jquery.com/jquery-1.11.1.js")
+    script(src="javascripts/main.js")

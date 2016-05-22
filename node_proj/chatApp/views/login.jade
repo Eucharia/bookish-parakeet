@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title Login
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
+        script(src="http://code.jquery.com/jquery.js")
+        script(src="javascripts/validate/dist/jquery.validate.min.js")
+block content
+    .container
+        h1 Login Page
+
+        br
+        form.loginForm(role='form', action="/login",method="post", style='max-width: 300px;')
+            div.form-group
+                input.form-control(type='text', name="username", placeholder='Enter Username')
+                div.error.inline
+            div.form-group
+                input.form-control(type='password', name="password", placeholder='Password', autocomplete="off")
+                div.error.inline
+            button.btn.btn-default(type='submit') Submit
+
+            a(href='/')
+                button.btn.btn-primary(type="button") Cancel
+
+
+    script(src="javascripts/login.js")
