@@ -25,3 +25,6 @@ Route::get('authors/new', ['as' => 'new_author', 'uses' => 'AuthorsController@ge
 Route::post('author/create', ['uses' => 'AuthorsController@create']);
 Route::get('authors/{id}/edit', ['as' => 'edit_author', 'uses' => 'AuthorsController@getEdit']);
 Route::put('author/update', ['uses' => 'AuthorsController@getUpdate']);
+Route::get('upload', ['uses' => 'UploadController@getUpload']);
+Route::post('/handleUpload', ['uses' => 'UploadController@handleUpload']);
+Route::post('/handleDownload', ['uses' => 'UploadController@handleDownload']);
