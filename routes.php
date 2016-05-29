@@ -28,3 +28,4 @@ Route::put('author/update', ['uses' => 'AuthorsController@getUpdate']);
 Route::get('upload', ['uses' => 'UploadController@getUpload']);
 Route::post('/handleUpload', ['uses' => 'UploadController@handleUpload']);
 Route::post('/handleDownload', ['uses' => 'UploadController@handleDownload']);
+Route::get('/deletedFiles/{id}', ['as' => 'deleted', 'uses' => 'UploadController@deleteFile']);

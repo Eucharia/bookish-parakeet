@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Input;
+use App\UploadedFiles;
   
 
 class UploadController extends Controller
@@ -25,7 +26,8 @@ class UploadController extends Controller
      */
     public function getUpload(){
         $directory = config('app.fileDestinationPath');
-        $files = Storage::files($directory);
+        //$files = Storage::files($directory);
+        $files = UploadedFiles::all();
 
         //$filename = pathinfo($files, PATHINFO_BASENAME);
         return view('uploads.files_uploads')
@@ -34,9 +36,9 @@ class UploadController extends Controller
     }
     
     public function handleUpload(Request $request){
-            if (Input::hasFile('file')) {
-                if (Input::file('file')->isValid()) {
-                    $file = Input::file('file');
+           // if (Input::hasFile('file')) {
+                //if (Input::file('file')->isValid()) {
+                    $file = $request->file('file');
                     $rules = [
                        'file' => 'required|max:10000|mimes:doc,docx,pdf'
                     ];
@@ -47,9 +49,20 @@ class UploadController extends Controller
                     $encryptedFile = Crypt::encrypt(file_get_contents($path));
                     $uploaded = Storage::put($destinationPath, $encryptedFile);
  
-                   
-                }              
-            }        
+                    if ($uploaded) {
+                        UploadedFiles::create([
+                            'filename' => $filename
+                        ]);
+                    }
+               // }              
+           // }        
             return Redirect('upload');       
+     }
+
+     public function deleteFile($id){
+        $file = UploadedFiles::find($id);
+        Storage::delete(config('app.fileDestinationPath').'/'.$file->filename);// delete from folder
+        $file->delete($id);
+        return Redirect('upload');
      }
 }
